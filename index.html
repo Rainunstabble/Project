@@ -1,0 +1,568 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Nexora</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #f5f5f5;
+        color: #222;
+      }
+
+      .nav {
+        width: 100%;
+        min-height: 75px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 6%;
+        background: linear-gradient(to left, red, black);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .logo {
+        color: white;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 1px;
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .navbar ul li a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .navbar ul li a:hover {
+        background: white;
+        color: black;
+      }
+
+      .cart-link {
+        position: relative;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -2px;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: red;
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .hero {
+        min-height: 520px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+        color: white;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+          url("best-hybrid-work-remote-work-laptops-jpeg-q82-w2560-h.webp");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero-content {
+        max-width: 750px;
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 6vw, 65px);
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        font-size: 21px;
+        color: #eee;
+        margin-bottom: 30px;
+      }
+
+      .shop-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: red;
+        color: white;
+        padding: 14px 30px;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .shop-btn:hover {
+        background: white;
+        color: black;
+        transform: translateY(-3px);
+      }
+
+      .sec2 {
+        padding: 70px 6%;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .section-title h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      .section-title p {
+        color: #777;
+        font-size: 16px;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+
+      .product {
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.16);
+      }
+
+      .product-image {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product img {
+        display: block;
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        transition: 0.4s;
+      }
+
+      .product:hover img {
+        transform: scale(1.06);
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-info h3 {
+        font-size: 21px;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        color: red;
+        font-size: 21px;
+        font-weight: bold;
+        margin-bottom: 18px;
+      }
+
+      .buy-btn {
+        width: 100%;
+        border: none;
+        background: black;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .buy-btn:hover {
+        background: red;
+        transform: translateY(-2px);
+      }
+
+      .features {
+        padding: 60px 6%;
+        background: white;
+      }
+
+      .feature-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      .feature {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 12px;
+        background: #f5f5f5;
+        transition: 0.3s;
+      }
+
+      .feature:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .feature-icon img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto 15px;
+      }
+
+      .feature h3 {
+        margin-bottom: 8px;
+      }
+
+      .feature p {
+        color: #777;
+      }
+
+      footer {
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      footer p {
+        color: #bbb;
+      }
+
+      @media (max-width: 1000px) {
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .feature-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 650px) {
+        .nav {
+          flex-direction: column;
+          gap: 12px;
+          padding: 15px 20px;
+        }
+
+        .navbar ul {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .navbar ul li a {
+          padding: 8px 10px;
+          font-size: 14px;
+        }
+
+        .hero {
+          min-height: 450px;
+        }
+
+        .hero p {
+          font-size: 17px;
+        }
+
+        .products {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-container {
+          grid-template-columns: 1fr;
+        }
+
+        .sec2 {
+          padding: 50px 20px;
+        }
+
+        .section-title h2 {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="nav">
+      <div class="logo">Nexora</div>
+
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="./pages/Home.html"> Home </a>
+          </li>
+
+          <li>
+            <a href="./pages/products.html"> Products </a>
+          </li>
+
+          <li>
+            <a href="./pages/cart.html" class="cart-link">
+              Cart
+              <span class="cart-count" id="cartCount">0</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/login"> Login </a>
+          </li>
+
+          <li>
+            <a href="/register"> Register </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Welcome To Nexora</h1>
+
+        <p>Find quality products at affordable prices.</p>
+
+        <a href="./pages/products.html" class="shop-btn"> Shop Now </a>
+      </div>
+    </section>
+
+    <section class="sec2" id="products">
+      <div class="section-title">
+        <h2>Featured Products</h2>
+
+        <p>Check out some of our popular products</p>
+      </div>
+
+      <div class="products">
+        <div class="product">
+          <div class="product-image">
+            <img
+              src="best-hybrid-work-remote-work-laptops-jpeg-q82-w2560-h.webp"
+              alt="Laptop"
+            />
+          </div>
+
+          <div class="product-info">
+            <h3>Laptop</h3>
+
+            <p class="price">₹60,000</p>
+
+            <button
+              class="buy-btn"
+              data-name="Laptop"
+              data-price="60000"
+              data-image="../best-hybrid-work-remote-work-laptops-jpeg-q82-w2560-h.webp"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="product-image">
+            <img src="headphones.webp" alt="Headphones" />
+          </div>
+
+          <div class="product-info">
+            <h3>Headphones</h3>
+
+            <p class="price">₹3,500</p>
+
+            <button
+              class="buy-btn"
+              data-name="Headphones"
+              data-price="3500"
+              data-image="../headphones.webp"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="product-image">
+            <img src="watch .jpg" alt="Smart Watch" />
+          </div>
+
+          <div class="product-info">
+            <h3>Smart Watch</h3>
+
+            <p class="price">₹5,500</p>
+
+            <button
+              class="buy-btn"
+              data-name="Smart Watch"
+              data-price="5500"
+              data-image="../watch .jpg"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="product-image">
+            <img src="phone.jpg" alt="Smartphone" />
+          </div>
+
+          <div class="product-info">
+            <h3>Smartphone</h3>
+
+            <p class="price">₹25,999</p>
+
+            <button
+              class="buy-btn"
+              data-name="Smartphone"
+              data-price="25999"
+              data-image="../phone.jpg"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-container">
+        <div class="feature">
+          <div class="feature-icon"><img src="fast-delivery.png" alt="Fast Delivery" /></div>
+
+          <h3>Fast Delivery</h3>
+
+          <p>Get your products delivered quickly.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon"><img src="online-shopping.png" alt="Secure Shopping"></div>
+
+          <h3>Secure Shopping</h3>
+
+          <p>Your shopping experience stays protected.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon"><img src="best-product.png" alt="Quality product"></div>
+
+          <h3>Quality Products</h3>
+
+          <p>Shop from our collection of products.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Nexora. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      const buyButtons = document.querySelectorAll(".buy-btn");
+
+      const cartCount = document.getElementById("cartCount");
+
+      function getCart() {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+      }
+
+      function updateCartCount() {
+        const cart = getCart();
+
+        const totalQuantity = cart.reduce(
+          (total, product) => total + Number(product.quantity),
+          0,
+        );
+
+        cartCount.textContent = totalQuantity;
+      }
+
+      buyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const product = {
+            name: button.dataset.name,
+
+            price: Number(button.dataset.price),
+
+            image: button.dataset.image,
+
+            quantity: 1,
+          };
+
+          const cart = getCart();
+
+          const existing = cart.find((item) => item.name === product.name);
+
+          if (existing) {
+            existing.quantity++;
+          } else {
+            cart.push(product);
+          }
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          updateCartCount();
+
+          button.textContent = "Added ✓";
+
+          button.style.background = "green";
+
+          setTimeout(() => {
+            window.location.href = "./pages/cart.html";
+          }, 400);
+        });
+      });
+
+      updateCartCount();
+    </script>
+  </body>
+</html>

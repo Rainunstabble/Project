@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nexora - Login</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255, 0, 0, 0.25),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(255, 0, 0, 0.2),
+          transparent 30%
+        ),
+        linear-gradient(135deg, #050505, #180000, #000);
+    }
+
+    /* Background circles */
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    body::before {
+      width: 250px;
+      height: 250px;
+      background: rgba(255, 0, 0, 0.12);
+      top: -80px;
+      left: -80px;
+    }
+
+    body::after {
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 0, 0, 0.1);
+      bottom: -120px;
+      right: -100px;
+    }
+
+    /* Main card */
+
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+      padding: 45px 40px;
+
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 22px;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 0, 0, 0.08);
+    }
+
+    /* Logo */
+
+    .logo {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #111;
+      margin-bottom: 5px;
+    }
+
+    .logo span {
+      color: #e60000;
+    }
+
+    .welcome {
+      text-align: center;
+      color: #777;
+      font-size: 15px;
+      margin-bottom: 35px;
+    }
+
+    /* Input */
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 9px;
+      color: #222;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .input-box {
+      position: relative;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 15px;
+
+      border: 1px solid #ddd;
+      border-radius: 10px;
+
+      outline: none;
+      font-size: 15px;
+      background: #fafafa;
+
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #e60000;
+      background: white;
+
+      box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.08);
+    }
+
+    /* Login button */
+
+    .login-btn {
+      width: 100%;
+      border: none;
+
+      padding: 14px;
+      margin-top: 5px;
+
+      border-radius: 10px;
+
+      background: linear-gradient(135deg, #111, #e60000);
+      color: white;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 10px 25px rgba(230, 0, 0, 0.3);
+    }
+
+    .login-btn:active {
+      transform: translateY(-1px);
+    }
+
+    /* Divider */
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin: 28px 0;
+
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: #ddd;
+      flex: 1;
+    }
+
+    /* Register */
+
+    .register-text {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .register-text a {
+      color: #e60000;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .register-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Home */
+
+    .back-home {
+      display: block;
+
+      text-align: center;
+      margin-top: 22px;
+
+      color: #555;
+      text-decoration: none;
+
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .back-home:hover {
+      color: #e60000;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .login-container {
+        padding: 35px 25px;
+        border-radius: 18px;
+      }
+
+      .logo {
+        font-size: 35px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div class="login-container">
+
+    <div class="logo">
+      Nex<span>ora</span>
+    </div>
+
+    <p class="welcome">
+      Welcome back! Login to continue shopping.
+    </p>
+
+
+    <form action="/login" method="POST">
+
+      <div class="form-group">
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <div class="input-box">
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <div class="input-box">
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <button type="submit" class="login-btn">
+        Login to Nexora
+      </button>
+
+    </form>
+
+
+    <div class="divider">
+      OR
+    </div>
+
+
+    <p class="register-text">
+      Don't have an account?
+
+      <a href="/register">
+        Create an account
+      </a>
+    </p>
+
+
+    <a href="../index.html" class="back-home">
+      ← Back to Home
+    </a>
+
+  </div>
+
+</body>
+
+</html>

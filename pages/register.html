@@ -1,0 +1,269 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: linear-gradient(
+          to bottom,
+          rgb(208, 51, 51),
+          rgb(6, 6, 236)
+        );
+      }
+
+      .register-container {
+        width: 400px;
+        padding: 35px;
+
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+
+        backdrop-filter: blur(10px);
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+        color: white;
+      }
+
+      .register-container h1 {
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #ddd;
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+
+      .field {
+        margin-bottom: 17px;
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 7px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        color: white;
+        font-size: 15px;
+
+        outline: none;
+
+        transition: 0.3s ease;
+      }
+
+      .field input::placeholder {
+        color: #ccc;
+      }
+
+      .field input:focus {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.18);
+
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+
+      .terms {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        margin: 15px 0 20px;
+
+        font-size: 13px;
+        color: #ddd;
+      }
+
+      .terms input {
+        width: auto;
+      }
+
+      .terms a {
+        color: white;
+      }
+
+      .register-btn {
+        width: 100%;
+        padding: 12px;
+
+        border: none;
+        border-radius: 7px;
+
+        background: black;
+        color: white;
+
+        font-size: 16px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+      }
+
+      .register-btn:hover {
+        background: white;
+        color: black;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .register-btn:active {
+        transform: scale(0.97);
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+
+        font-size: 14px;
+        color: #ddd;
+      }
+
+      .login-link a {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 450px) {
+        .register-container {
+          width: 90%;
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="register-container">
+      <h1>Create Account</h1>
+
+      <p class="subtitle">Join Nexora and start shopping</p>
+
+      <form action="/register" method="post">
+        <!-- Name -->
+        <div class="field">
+          <label for="name">Full Name</label>
+
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter Your Name"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label for="email">Email</label>
+
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Your Email"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Phone -->
+        <div class="field">
+          <label for="phone">Phone Number</label>
+
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="Enter Phone Number"
+            required
+            autocomplete="tel"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Password"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+
+        <!-- Terms -->
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required />
+
+          <label for="terms">
+            I agree to the
+            <a href="/">Terms and Conditions</a>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="register-btn">Create Account</button>
+      </form>
+
+      <p class="login-link">
+        Already have an account?
+        <a href="/login">Login</a>
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,431 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexora | Cart</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f5f5f5;
+        color: #222;
+      }
+
+      nav {
+        height: 75px;
+        background: #111;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 7%;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+      }
+
+      .back-btn {
+        text-decoration: none;
+        color: white;
+        background: #e60000;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .back-btn:hover {
+        background: white;
+        color: #111;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 40px auto;
+      }
+
+      .heading {
+        margin-bottom: 25px;
+      }
+
+      .heading h1 {
+        font-size: 36px;
+        margin-bottom: 8px;
+      }
+
+      .heading p {
+        color: #777;
+        font-size: 16px;
+      }
+
+      #cartItems {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .cart-item {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        transition: 0.25s;
+      }
+
+      .cart-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 9px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .product {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .product img {
+        width: 145px;
+        height: 145px;
+        object-fit: cover;
+        border-radius: 12px;
+        background: #eee;
+      }
+
+      .product-info h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        color: #e60000;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quantity button {
+        width: 38px;
+        height: 38px;
+        border: 1px solid #ddd;
+        background: #f5f5f5;
+        border-radius: 7px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .quantity button:hover {
+        background: #111;
+        color: white;
+      }
+
+      .quantity span {
+        min-width: 35px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .remove-btn {
+        border: none;
+        background: #ffe5e5;
+        color: #d00000;
+        padding: 10px 15px;
+        border-radius: 7px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .remove-btn:hover {
+        background: #d00000;
+        color: white;
+      }
+
+      .summary {
+        margin-top: 30px;
+        background: #111;
+        color: white;
+        padding: 25px 30px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .summary h2 {
+        font-size: 25px;
+      }
+
+      .total {
+        font-size: 30px;
+        font-weight: 800;
+      }
+
+      .empty {
+        background: white;
+        padding: 80px 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .empty h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .empty p {
+        color: #777;
+        margin-bottom: 25px;
+      }
+
+      .shop-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: #111;
+        color: white;
+        padding: 12px 22px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .shop-btn:hover {
+        background: #e60000;
+      }
+
+      @media (max-width: 750px) {
+        nav {
+          padding: 0 4%;
+        }
+
+        .logo {
+          font-size: 23px;
+        }
+
+        .container {
+          width: 94%;
+          margin: 25px auto;
+        }
+
+        .heading h1 {
+          font-size: 30px;
+        }
+
+        .cart-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+
+        .product {
+          width: 100%;
+        }
+
+        .product img {
+          width: 110px;
+          height: 110px;
+        }
+
+        .remove-btn {
+          align-self: flex-end;
+        }
+
+        .summary {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .product {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .product img {
+          width: 100%;
+          height: 220px;
+        }
+
+        .remove-btn {
+          align-self: flex-start;
+        }
+
+        .summary {
+          padding: 20px;
+        }
+
+        .total {
+          font-size: 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">Nexora</div>
+      <a href="/products" class="back-btn">Continue Shopping</a>
+    </nav>
+
+    <div class="container">
+      <div class="heading">
+        <h1>Your Shopping Cart</h1>
+        <p>Review your products before checkout</p>
+      </div>
+
+      <div id="cartItems"></div>
+
+      <div id="summary"></div>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const cartItems = document.getElementById("cartItems");
+      const summary = document.getElementById("summary");
+
+      function displayCart() {
+        cartItems.innerHTML = "";
+        summary.innerHTML = "";
+
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+                <div class="empty">
+                    <h2>Your cart is empty 🛒</h2>
+                    <p>Keep track of your products here</p>
+                    <a href="/products" class="shop-btn">
+                        Start Shopping
+                    </a>
+                </div>
+            `;
+
+          return;
+        }
+
+        let total = 0;
+
+        cart.forEach((product, index) => {
+          const price = Number(product.price);
+          const quantity = Number(product.quantity);
+
+          total += price * quantity;
+
+          cartItems.innerHTML += `
+                <div class="cart-item">
+
+                    <div class="product">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+                        <div class="product-info">
+
+                            <h2>${product.name}</h2>
+
+                            <p class="price">
+                                ₹${price}
+                            </p>
+
+                            <div class="quantity">
+
+                                <button
+                                    type="button"
+                                    onclick="decreaseQuantity(${index})"
+                                >
+                                    −
+                                </button>
+
+                                <span>
+                                    ${quantity}
+                                </span>
+
+                                <button
+                                    type="button"
+                                    onclick="increaseQuantity(${index})"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="remove-btn"
+                        type="button"
+                        onclick="removeProduct(${index})"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+            `;
+        });
+
+        summary.innerHTML = `
+            <div class="summary">
+                <h2>Cart Total</h2>
+                <div class="total">₹${total}</div>
+            </div>
+        `;
+      }
+
+      function increaseQuantity(index) {
+        cart[index].quantity++;
+        saveCart();
+      }
+
+      function decreaseQuantity(index) {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } else {
+          cart.splice(index, 1);
+        }
+
+        saveCart();
+      }
+
+      function removeProduct(index) {
+        cart.splice(index, 1);
+        saveCart();
+      }
+
+      function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+
+      displayCart();
+    </script>
+  </body>
+</html>

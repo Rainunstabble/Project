@@ -1,0 +1,755 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexora - Products</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        color: white;
+
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 0, 80, 0.15),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(80, 80, 255, 0.15),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #050505, #111, #050505);
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        height: 70px;
+        padding: 0 7%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: rgba(8, 8, 8, 0.85);
+        backdrop-filter: blur(15px);
+
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .navbar ul {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .navbar a:hover {
+        color: #ff416c;
+      }
+
+      .header {
+        min-height: 75vh;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      .header h1 {
+        font-size: clamp(45px, 7vw, 85px);
+        margin-bottom: 20px;
+
+        background: linear-gradient(90deg, #fff, #ff416c, #ff4b2b);
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .header p {
+        color: #aaa;
+        font-size: 19px;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .category {
+        position: relative;
+        margin-bottom: 120px;
+      }
+
+      .category-title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .category-title h2 {
+        font-size: 38px;
+        margin-bottom: 10px;
+
+        text-shadow: 0 5px 25px rgba(255, 255, 255, 0.2);
+      }
+
+      .category-title span {
+        color: #888;
+      }
+
+      .carousel {
+        width: 100%;
+
+        padding: 30px 7%;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: thin;
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 30px;
+
+        width: max-content;
+      }
+
+      .product {
+        flex: 0 0 420px;
+
+        width: 420px;
+        height: 570px;
+
+        background: white;
+        color: #222;
+
+        border-radius: 26px;
+        overflow: hidden;
+
+        border: 1px solid rgba(255, 255, 255, 0.5);
+
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .product:hover {
+        transform: translateY(-8px);
+
+        box-shadow:
+          0 30px 70px rgba(0, 0, 0, 0.7),
+          0 0 40px rgba(255, 65, 108, 0.25);
+      }
+
+      .product img {
+        width: 100%;
+        height: 300px;
+
+        object-fit: cover;
+        display: block;
+      }
+
+      .product-info {
+        padding: 27px;
+        height: 270px;
+
+        background: white;
+      }
+
+      .product-info h3 {
+        font-size: 25px;
+        margin-bottom: 12px;
+      }
+
+      .description {
+        min-height: 48px;
+
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .price {
+        margin: 18px 0;
+
+        font-size: 25px;
+        font-weight: 800;
+
+        color: #e63946;
+      }
+
+      .buy-btn {
+        width: 100%;
+        padding: 15px;
+
+        border: none;
+        border-radius: 12px;
+
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+
+        color: white;
+
+        font-size: 16px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .buy-btn:hover {
+        transform: translateY(-3px);
+
+        box-shadow: 0 12px 30px rgba(255, 65, 108, 0.4);
+      }
+
+      footer {
+        padding: 50px;
+
+        text-align: center;
+
+        color: #777;
+
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      @media (max-width: 700px) {
+        nav {
+          padding: 0 20px;
+        }
+
+        .navbar ul {
+          gap: 12px;
+        }
+
+        .navbar a {
+          font-size: 12px;
+        }
+
+        .header {
+          min-height: 60vh;
+        }
+
+        .carousel {
+          padding: 30px 20px;
+        }
+
+        .carousel-track {
+          gap: 20px;
+        }
+
+        .product {
+          flex: 0 0 330px;
+
+          width: 330px;
+          height: 500px;
+        }
+
+        .product img {
+          height: 250px;
+        }
+
+        .product-info {
+          height: 250px;
+          padding: 22px;
+        }
+
+        .product-info h3 {
+          font-size: 22px;
+        }
+
+        .category-title h2 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">Nexora</div>
+
+      <div class="navbar">
+        <ul>
+          <li>
+            <a href="/home"> Home </a>
+          </li>
+
+          <li>
+            <a href="/products"> Products </a>
+          </li>
+
+          <li>
+            <a href="/cart"> Cart </a>
+          </li>
+
+          <li>
+            <a href="/login"> Login </a>
+          </li>
+
+          <li>
+            <a href="/register"> Register </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="header">
+      <h1>Shop Our Products</h1>
+    </section>
+
+    <div class="container">
+      <section class="category">
+        <div class="category-title">
+          <h2>All Products</h2>
+
+          <span> Home Essentials & Latest Technology </span>
+        </div>
+
+        <div class="carousel">
+          <div class="carousel-track">
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80"
+                alt="Washing Machine"
+              />
+
+              <div class="product-info">
+                <h3>Washing Machine</h3>
+
+                <p class="description">
+                  Fully automatic washing machine for everyday laundry.
+                </p>
+
+                <p class="price">₹28,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Washing Machine"
+                  data-price="28999"
+                  data-image="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=800&q=80"
+                alt="Microwave Oven"
+              />
+
+              <div class="product-info">
+                <h3>Microwave Oven</h3>
+
+                <p class="description">
+                  Compact microwave for quick cooking and heating.
+                </p>
+
+                <p class="price">₹9,499</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Microwave Oven"
+                  data-price="9499"
+                  data-image="https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80"
+                alt="Mixer Grinder"
+              />
+
+              <div class="product-info">
+                <h3>Mixer Grinder</h3>
+
+                <p class="description">
+                  Powerful mixer grinder for everyday kitchen use.
+                </p>
+
+                <p class="price">₹3,499</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Mixer Grinder"
+                  data-price="3499"
+                  data-image="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1725419281142-3f89b330b907?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=60&w=3000"
+                alt="Electric Kettle"
+              />
+
+              <div class="product-info">
+                <h3>Electric Kettle</h3>
+
+                <p class="description">
+                  Fast boiling kettle for tea, coffee and hot water.
+                </p>
+
+                <p class="price">₹1,299</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Electric Kettle"
+                  data-price="1299"
+                  data-image="https://images.unsplash.com/photo-1725419281142-3f89b330b907?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=60&w=3000"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1695089028114-ce28248f0ab9?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=60&w=3000"
+                alt="Air Fryer"
+              />
+
+              <div class="product-info">
+                <h3>Air Fryer</h3>
+
+                <p class="description">
+                  Convenient air fryer for everyday cooking.
+                </p>
+
+                <p class="price">₹5,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Air Fryer"
+                  data-price="5999"
+                  data-image="https://images.unsplash.com/photo-1695089028114-ce28248f0ab9?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=60&w=3000"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80"
+                alt="Vacuum Cleaner"
+              />
+
+              <div class="product-info">
+                <h3>Vacuum Cleaner</h3>
+
+                <p class="description">
+                  Powerful vacuum cleaner for keeping your home clean.
+                </p>
+
+                <p class="price">₹7,499</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Vacuum Cleaner"
+                  data-price="7499"
+                  data-image="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="../best-hybrid-work-remote-work-laptops-jpeg-q82-w2560-h.webp"
+                alt="Laptop"
+              />
+
+              <div class="product-info">
+                <h3>Laptop</h3>
+
+                <p class="description">
+                  High-performance laptop for work, study and entertainment.
+                </p>
+
+                <p class="price">₹60,000</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Laptop"
+                  data-price="60000"
+                  data-image="../best-hybrid-work-remote-work-laptops-jpeg-q82-w2560-h.webp"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img src="../headphones.webp" alt="Headphones" />
+
+              <div class="product-info">
+                <h3>Wireless Headphones</h3>
+
+                <p class="description">
+                  Comfortable wireless headphones with high-quality sound.
+                </p>
+
+                <p class="price">₹3,500</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Wireless Headphones"
+                  data-price="3500"
+                  data-image="../headphones.webp"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+                alt="Smart Watch"
+              />
+
+              <div class="product-info">
+                <h3>Smart Watch</h3>
+
+                <p class="description">
+                  Smart watch with useful everyday features and notifications.
+                </p>
+
+                <p class="price">₹5,500</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Smart Watch"
+                  data-price="5500"
+                  data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img src="../phone.jpg" alt="Smartphone" />
+
+              <div class="product-info">
+                <h3>Smartphone</h3>
+
+                <p class="description">
+                  Modern smartphone with a powerful processor and camera.
+                </p>
+
+                <p class="price">₹25,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Smartphone"
+                  data-price="25999"
+                  data-image="../phone.jpg"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"
+                alt="Bluetooth Speaker"
+              />
+
+              <div class="product-info">
+                <h3>Bluetooth Speaker</h3>
+
+                <p class="description">
+                  Portable speaker with powerful wireless audio.
+                </p>
+
+                <p class="price">₹2,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Bluetooth Speaker"
+                  data-price="2999"
+                  data-image="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming Keyboard"
+              />
+
+              <div class="product-info">
+                <h3>Gaming Keyboard</h3>
+
+                <p class="description">
+                  Mechanical keyboard designed for gaming and productivity.
+                </p>
+
+                <p class="price">₹2,499</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Gaming Keyboard"
+                  data-price="2499"
+                  data-image="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80"
+                alt="Computer Monitor"
+              />
+
+              <div class="product-info">
+                <h3>Computer Monitor</h3>
+
+                <p class="description">
+                  Full HD display suitable for work, study and entertainment.
+                </p>
+
+                <p class="price">₹12,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Computer Monitor"
+                  data-price="12999"
+                  data-image="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product">
+              <img
+                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80"
+                alt="Digital Camera"
+              />
+
+              <div class="product-info">
+                <h3>Digital Camera</h3>
+
+                <p class="description">
+                  Digital camera for capturing high-quality photographs.
+                </p>
+
+                <p class="price">₹45,999</p>
+
+                <button
+                  class="buy-btn"
+                  data-name="Digital Camera"
+                  data-price="45999"
+                  data-image="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>© 2026 Nexora. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      const buttons = document.querySelectorAll(".buy-btn");
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const product = {
+            name: button.dataset.name,
+
+            price: Number(button.dataset.price),
+
+            image: button.dataset.image,
+
+            quantity: 1,
+          };
+
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          const existing = cart.find(function (item) {
+            return item.name === product.name;
+          });
+
+          if (existing) {
+            existing.quantity++;
+          } else {
+            cart.push(product);
+          }
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          button.textContent = "Added ✓";
+
+          setTimeout(function () {
+            window.location.href = "/cart";
+          }, 500);
+        });
+      });
+    </script>
+  </body>
+</html>
